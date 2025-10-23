@@ -58,7 +58,9 @@ All flagged individuals have **multiple fraud indicators** (both statistical out
 
 ### Scripts
 - `fraud_detector.py` - Main fraud detection algorithm implementation
-- `visualize_graph.py` - Graph visualization generator
+- `visualize_graph.py` - Graph visualization generator (static images)
+- `interactive_fraud_explorer.py` - **Interactive web-based explorer with Gradio**
+- `start_interactive_explorer.sh` - Quick start script for the interactive app
 
 ### Outputs
 - `fraud_detection_results.json` - Detailed fraud detection results in JSON format
@@ -68,21 +70,60 @@ All flagged individuals have **multiple fraud indicators** (both statistical out
 
 ## Usage
 
-### Run Fraud Detection
+### 🌟 Interactive Web Application (Recommended)
+
+Launch the interactive Gradio application for the best exploration experience:
+
+```bash
+# Quick start with the shell script
+./start_interactive_explorer.sh
+
+# Or run directly
+python3 interactive_fraud_explorer.py
+```
+
+Then open your browser to: **http://localhost:7860**
+
+**Features:**
+- 🔍 **Interactive Graph**: Zoom, pan, and hover over nodes to see details
+- 📊 **Dynamic Filtering**: Filter by fraud status and node types
+- 🔎 **Entity Search**: Search for specific people, cars, or entities
+- 📈 **Real-time Stats**: View fraud detection summaries and top suspects
+- 🎯 **Focused Views**: Highlight only suspicious entities and their connections
+
+### Command-Line Tools
+
+#### Run Fraud Detection
 ```bash
 python3 fraud_detector.py
 ```
 
-### Generate Visualizations
+#### Generate Static Visualizations
 ```bash
 python3 visualize_graph.py
 ```
 
 ## Requirements
 
+### Installation
+
+Install all dependencies at once:
 ```bash
-pip install matplotlib networkx scipy
+pip install -r requirements.txt
 ```
+
+Or install manually:
+```bash
+pip install matplotlib networkx scipy gradio plotly pandas
+```
+
+**Required packages:**
+- `matplotlib` - Static visualizations
+- `networkx` - Graph analysis
+- `scipy` - Statistical computations
+- `gradio` - Interactive web UI
+- `plotly` - Interactive graphs
+- `pandas` - Data tables
 
 ## Interpretation Guide
 
@@ -106,6 +147,61 @@ pip install matplotlib networkx scipy
 4. **Repeated Witnesses**: Same witnesses across unrelated accidents suggests coordination
 
 5. **Role Switching**: Alternating between driver/passenger roles across accidents indicates potential organized fraud rings
+
+## Interactive Application Features
+
+### Tab 1: Interactive Graph 🌐
+- **Plotly-powered visualization**: Fully interactive network graph
+- **Zoom & Pan**: Navigate large graphs easily
+- **Hover Details**: See entity information on hover
+- **Filters**:
+  - Show all entities or suspicious only
+  - Filter by node type (Accident, Car, Participant, etc.)
+  - Adjust max nodes for performance
+- **Color Coding**:
+  - Red nodes = Suspicious/Fraud detected
+  - Different colors for each entity type
+  - Edge colors indicate relationship types
+
+### Tab 2: Search & Details 🔎
+- **Entity Search**: Find any entity by name or ID
+- **Detailed View**: Get comprehensive information about:
+  - Entity type and role
+  - Fraud status and indicators
+  - All incoming and outgoing connections
+  - Related entities
+
+### Tab 3: Fraud Summary 📊
+- **Statistics Dashboard**: Overview of all fraud indicators
+- **Top Suspects Table**: Interactive table with:
+  - Entity names
+  - Number of accidents
+  - Severity level
+  - Fraud indicator types
+- **Sortable & Filterable**: Easy data exploration
+
+### Tab 4: About ℹ️
+- Complete documentation
+- Fraud detection methodology
+- Usage instructions
+
+## Troubleshooting
+
+### Port Already in Use
+If port 7860 is already in use, you can specify a different port:
+```python
+# Edit interactive_fraud_explorer.py, line ~378
+app.launch(server_port=8080)  # Change to any available port
+```
+
+### Performance Tips
+- For large graphs, reduce the "Max Nodes" slider
+- Use "Suspicious Only" filter to focus on fraud cases
+- The interactive graph may take a few seconds to load initially
+
+### Browser Compatibility
+- Works best in Chrome, Firefox, or Edge
+- JavaScript must be enabled
 
 ## Authors
 

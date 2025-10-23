@@ -1,0 +1,6 @@
+matplotlib>=3.10.0
+networkx>=3.5
+scipy>=1.16.0
+gradio>=5.49.0
+plotly>=6.3.0
+pandas>=2.3.0
