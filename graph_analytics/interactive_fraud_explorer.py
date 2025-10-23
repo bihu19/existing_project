@@ -249,11 +249,7 @@ class InteractiveFraudExplorer:
             )
             node_traces.append(fraud_trace)
 
-        # Add suspicious professional traces (larger size, normal color)
-        node_colors_map = {
-            'Lawyer': '#FFE66D',
-            'Doctor': '#95E1D3',
-        }
+        # Add suspicious professional traces (larger size, normal color from the map defined above)
         for prof_type, data in suspicious_professional_traces.items():
             if data['x']:
                 prof_trace = go.Scatter(
