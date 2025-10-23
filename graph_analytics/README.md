@@ -39,9 +39,16 @@ The dataset (`insurance-fraud-data.json`) contains:
 - **Method**: Parses comma-separated role fields and tracks role changes across accidents (potential organized fraud)
 - **Results**: Detected 35 suspicious role switchers
 
+### 6. Suspicious Professional Detection
+- **Logic**: Identifies doctors and lawyers who work with multiple suspicious participants
+- **Method**: Detects professionals (doctors/lawyers) connected to 2+ flagged participants
+- **Results**: Detected 8 suspicious professionals
+  - 3 HIGH severity (4-6 suspicious clients)
+  - Examples: ID 290 (Lawyer, 4 clients), ID 291 (Doctor, 4 clients)
+
 ## Key Findings
 
-**Total Suspicious Entities**: 36 individuals
+**Total Suspicious Entities**: 44 individuals (36 participants + 8 professionals)
 
 **Top Suspects** (involved in 6 accidents each):
 - ROBERT L. HARVEY
@@ -58,6 +65,15 @@ All flagged individuals have **THREE fraud indicators**:
 3. **Role switching** (alternating between Driver and Passenger roles)
 
 This pattern strongly suggests **organized fraud rings** where the same people coordinate to stage accidents in different roles.
+
+### Suspicious Professionals (8 doctors/lawyers):
+- **CHRISTOPHER Y. WOODS** (ID: 290) - Lawyer with 4 suspicious clients
+- **MAYA U. CASSIDY** (ID: 291) - Doctor with 4 suspicious clients
+- **MARIA S. PARK** (ID: 565) - Lawyer with 6 suspicious clients
+- **GIANNA Q. BRIEN** (ID: 566) - Doctor with 6 suspicious clients
+- And 4 more professionals
+
+These professionals are likely **part of the fraud ring**, helping stage claims and providing false documentation.
 
 ## Files
 
@@ -133,13 +149,22 @@ pip install matplotlib networkx scipy gradio plotly pandas
 ## Interpretation Guide
 
 ### Visual Elements
-- **Red Nodes**: Flagged as suspicious/fraudulent
+- **Red Nodes**: Suspicious participants (drivers/passengers involved in fraud)
+- **Larger Nodes (same color)**: Suspicious professionals (doctors/lawyers working with multiple suspicious clients)
+  - Doctors shown in mint green (larger size if suspicious)
+  - Lawyers shown in yellow (larger size if suspicious)
+  - Red border indicates suspicious professional
+- **Normal Nodes**: Regular size with type-specific colors
 - **Node Types**: Different colors represent different entity types
-- **Edges**: Show relationships between entities
+- **Edges**: Show relationships between entities (represents, heals, drives, etc.)
 
 ### Severity Levels
-- **HIGH**: 3+ accidents or severe statistical outliers
-- **MEDIUM**: 2 accidents or moderate patterns
+- **HIGH**:
+  - Participants: 3+ accidents or 6+ accidents
+  - Professionals: 4+ suspicious clients
+- **MEDIUM**:
+  - Participants: 2 accidents
+  - Professionals: 2-3 suspicious clients
 
 ## Fraud Definition Rationale
 

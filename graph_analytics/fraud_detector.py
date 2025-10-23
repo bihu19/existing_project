@@ -232,6 +232,55 @@ class FraudDetector:
 
         return suspicious
 
+    def detect_suspicious_professionals(self, min_suspicious_clients=2):
+        """
+        Detect doctors and lawyers who work with multiple suspicious participants
+        These professionals may be part of fraud rings
+        """
+        suspicious = []
+
+        # First, get all suspicious participant node IDs
+        suspicious_participant_ids = set()
+        for node in self.nodes:
+            if node['type'] == 'Participant' and isinstance(node.get('info'), dict):
+                name = node['info']['name']
+                if name in self.fraud_flags:
+                    suspicious_participant_ids.add(node['id'])
+
+        # Now check doctors and lawyers
+        professional_connections = defaultdict(set)
+
+        for edge in self.edges:
+            source_node = self.node_dict.get(edge['from'])
+            target_node = self.node_dict.get(edge['to'])
+
+            if not source_node or not target_node:
+                continue
+
+            # Check if professional (doctor/lawyer) connects to suspicious participant
+            if source_node['type'] in ['Doctor', 'Lawyer']:
+                if edge['to'] in suspicious_participant_ids:
+                    professional_connections[edge['from']].add(edge['to'])
+
+        # Flag professionals with multiple suspicious connections
+        for professional_id, connected_participants in professional_connections.items():
+            if len(connected_participants) >= min_suspicious_clients:
+                professional = self.node_dict[professional_id]
+                name = professional['info']['name'] if isinstance(professional.get('info'), dict) else str(professional.get('info', ''))
+
+                suspicious.append({
+                    'name': name,
+                    'id': professional_id,
+                    'type': 'SUSPICIOUS_PROFESSIONAL',
+                    'professional_type': professional['type'],
+                    'suspicious_clients': len(connected_participants),
+                    'severity': 'HIGH' if len(connected_participants) >= 4 else 'MEDIUM',
+                    'details': f"{professional['type']} with {len(connected_participants)} suspicious clients"
+                })
+                self.fraud_flags[name].append('SUSPICIOUS_PROFESSIONAL')
+
+        return suspicious
+
     def run_all_detections(self):
         """Run all fraud detection algorithms"""
         print("=" * 80)
@@ -290,6 +339,16 @@ class FraudDetector:
         print(f"Found {len(role_switching)} suspicious role switcher(s):")
         for item in role_switching:
             print(f"  - {item['name']}: {item['details']} [{item['severity']}]")
+        print()
+
+        # 6. Suspicious Professionals (must run AFTER participant detection)
+        print("6. SUSPICIOUS PROFESSIONAL DETECTION (Doctors/Lawyers with Multiple Suspicious Clients)")
+        print("-" * 80)
+        suspicious_professionals = self.detect_suspicious_professionals(min_suspicious_clients=2)
+        all_findings['suspicious_professionals'] = suspicious_professionals
+        print(f"Found {len(suspicious_professionals)} suspicious professional(s):")
+        for item in suspicious_professionals:
+            print(f"  - {item['name']} (ID: {item['id']}): {item['details']} [{item['severity']}]")
         print()
 
         # Summary
