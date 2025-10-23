@@ -1,0 +1,738 @@
+{
+  "summary": {
+    "total_nodes": 1547,
+    "total_edges": 1947,
+    "suspicious_entities": 36
+  },
+  "findings": {
+    "statistical_outliers": [
+      {
+        "name": "JAMES K. CLARKE",
+        "type": "STATISTICAL_OUTLIER",
+        "accident_count": 4,
+        "threshold": 1.1789600967351874,
+        "severity": "HIGH",
+        "details": "Involved in 4 accidents (threshold: 1.18)"
+      },
+      {
+        "name": "BRIAN Y. GRADY",
+        "type": "STATISTICAL_OUTLIER",
+        "accident_count": 4,
+        "threshold": 1.1789600967351874,
+        "severity": "HIGH",
+        "details": "Involved in 4 accidents (threshold: 1.18)"
+      },
+      {
+        "name": "KAYLA J. JACKSON",
+        "type": "STATISTICAL_OUTLIER",
+        "accident_count": 4,
+        "threshold": 1.1789600967351874,
+        "severity": "HIGH",
+        "details": "Involved in 4 accidents (threshold: 1.18)"
+      },
+      {
+        "name": "BAILEY F. WOODS",
+        "type": "STATISTICAL_OUTLIER",
+        "accident_count": 4,
+        "threshold": 1.1789600967351874,
+        "severity": "HIGH",
+        "details": "Involved in 4 accidents (threshold: 1.18)"
+      },
+      {
+        "name": "CARL X. CURTIS",
+        "type": "STATISTICAL_OUTLIER",
+        "accident_count": 4,
+        "threshold": 1.1789600967351874,
+        "severity": "HIGH",
+        "details": "Involved in 4 accidents (threshold: 1.18)"
+      },
+      {
+        "name": "SARAH T. KENNEDY",
+        "type": "STATISTICAL_OUTLIER",
+        "accident_count": 4,
+        "threshold": 1.1789600967351874,
+        "severity": "HIGH",
+        "details": "Involved in 4 accidents (threshold: 1.18)"
+      },
+      {
+        "name": "BRUCE G. CAMPBELL",
+        "type": "STATISTICAL_OUTLIER",
+        "accident_count": 4,
+        "threshold": 1.1789600967351874,
+        "severity": "HIGH",
+        "details": "Involved in 4 accidents (threshold: 1.18)"
+      },
+      {
+        "name": "CAMILLA V. CARR",
+        "type": "STATISTICAL_OUTLIER",
+        "accident_count": 4,
+        "threshold": 1.1789600967351874,
+        "severity": "HIGH",
+        "details": "Involved in 4 accidents (threshold: 1.18)"
+      },
+      {
+        "name": "ROBERT L. HARVEY",
+        "type": "STATISTICAL_OUTLIER",
+        "accident_count": 6,
+        "threshold": 1.1789600967351874,
+        "severity": "HIGH",
+        "details": "Involved in 6 accidents (threshold: 1.18)"
+      },
+      {
+        "name": "GEORGE D. FELLOWS",
+        "type": "STATISTICAL_OUTLIER",
+        "accident_count": 6,
+        "threshold": 1.1789600967351874,
+        "severity": "HIGH",
+        "details": "Involved in 6 accidents (threshold: 1.18)"
+      },
+      {
+        "name": "ELENA I. MORGAN",
+        "type": "STATISTICAL_OUTLIER",
+        "accident_count": 6,
+        "threshold": 1.1789600967351874,
+        "severity": "HIGH",
+        "details": "Involved in 6 accidents (threshold: 1.18)"
+      },
+      {
+        "name": "JONATHAN L. HUDSON",
+        "type": "STATISTICAL_OUTLIER",
+        "accident_count": 6,
+        "threshold": 1.1789600967351874,
+        "severity": "HIGH",
+        "details": "Involved in 6 accidents (threshold: 1.18)"
+      },
+      {
+        "name": "JACK X. KING",
+        "type": "STATISTICAL_OUTLIER",
+        "accident_count": 6,
+        "threshold": 1.1789600967351874,
+        "severity": "HIGH",
+        "details": "Involved in 6 accidents (threshold: 1.18)"
+      },
+      {
+        "name": "KENNETH B. BECKETT",
+        "type": "STATISTICAL_OUTLIER",
+        "accident_count": 6,
+        "threshold": 1.1789600967351874,
+        "severity": "HIGH",
+        "details": "Involved in 6 accidents (threshold: 1.18)"
+      },
+      {
+        "name": "EDWARD K. MORRISON",
+        "type": "STATISTICAL_OUTLIER",
+        "accident_count": 6,
+        "threshold": 1.1789600967351874,
+        "severity": "HIGH",
+        "details": "Involved in 6 accidents (threshold: 1.18)"
+      },
+      {
+        "name": "SOPHIE I. HILL",
+        "type": "STATISTICAL_OUTLIER",
+        "accident_count": 6,
+        "threshold": 1.1789600967351874,
+        "severity": "HIGH",
+        "details": "Involved in 6 accidents (threshold: 1.18)"
+      },
+      {
+        "name": "LILY G. LLOYD",
+        "type": "STATISTICAL_OUTLIER",
+        "accident_count": 6,
+        "threshold": 1.1789600967351874,
+        "severity": "HIGH",
+        "details": "Involved in 6 accidents (threshold: 1.18)"
+      },
+      {
+        "name": "ANNA Q. WARNER",
+        "type": "STATISTICAL_OUTLIER",
+        "accident_count": 6,
+        "threshold": 1.1789600967351874,
+        "severity": "HIGH",
+        "details": "Involved in 6 accidents (threshold: 1.18)"
+      },
+      {
+        "name": "ANNABELLE U. SMITH",
+        "type": "STATISTICAL_OUTLIER",
+        "accident_count": 6,
+        "threshold": 1.1789600967351874,
+        "severity": "HIGH",
+        "details": "Involved in 6 accidents (threshold: 1.18)"
+      },
+      {
+        "name": "RICHARD F. PATTERSON",
+        "type": "STATISTICAL_OUTLIER",
+        "accident_count": 6,
+        "threshold": 1.1789600967351874,
+        "severity": "HIGH",
+        "details": "Involved in 6 accidents (threshold: 1.18)"
+      },
+      {
+        "name": "AALIYAH P. TAYLOR",
+        "type": "STATISTICAL_OUTLIER",
+        "accident_count": 2,
+        "threshold": 1.1789600967351874,
+        "severity": "HIGH",
+        "details": "Involved in 2 accidents (threshold: 1.18)"
+      },
+      {
+        "name": "ADDISON W. JEFFERSON",
+        "type": "STATISTICAL_OUTLIER",
+        "accident_count": 2,
+        "threshold": 1.1789600967351874,
+        "severity": "HIGH",
+        "details": "Involved in 2 accidents (threshold: 1.18)"
+      },
+      {
+        "name": "SCARLETT L. COOPER",
+        "type": "STATISTICAL_OUTLIER",
+        "accident_count": 2,
+        "threshold": 1.1789600967351874,
+        "severity": "HIGH",
+        "details": "Involved in 2 accidents (threshold: 1.18)"
+      },
+      {
+        "name": "KENNETH T. WRIGHT",
+        "type": "STATISTICAL_OUTLIER",
+        "accident_count": 2,
+        "threshold": 1.1789600967351874,
+        "severity": "HIGH",
+        "details": "Involved in 2 accidents (threshold: 1.18)"
+      },
+      {
+        "name": "CAMILLA D. MILLER",
+        "type": "STATISTICAL_OUTLIER",
+        "accident_count": 6,
+        "threshold": 1.1789600967351874,
+        "severity": "HIGH",
+        "details": "Involved in 6 accidents (threshold: 1.18)"
+      },
+      {
+        "name": "TIMOTHY M. BALDWIN",
+        "type": "STATISTICAL_OUTLIER",
+        "accident_count": 6,
+        "threshold": 1.1789600967351874,
+        "severity": "HIGH",
+        "details": "Involved in 6 accidents (threshold: 1.18)"
+      },
+      {
+        "name": "GARY D. HILL",
+        "type": "STATISTICAL_OUTLIER",
+        "accident_count": 6,
+        "threshold": 1.1789600967351874,
+        "severity": "HIGH",
+        "details": "Involved in 6 accidents (threshold: 1.18)"
+      },
+      {
+        "name": "JUAN Q. COOK",
+        "type": "STATISTICAL_OUTLIER",
+        "accident_count": 6,
+        "threshold": 1.1789600967351874,
+        "severity": "HIGH",
+        "details": "Involved in 6 accidents (threshold: 1.18)"
+      },
+      {
+        "name": "CHARLES G. REED",
+        "type": "STATISTICAL_OUTLIER",
+        "accident_count": 6,
+        "threshold": 1.1789600967351874,
+        "severity": "HIGH",
+        "details": "Involved in 6 accidents (threshold: 1.18)"
+      },
+      {
+        "name": "SADIE N. HARRIS",
+        "type": "STATISTICAL_OUTLIER",
+        "accident_count": 6,
+        "threshold": 1.1789600967351874,
+        "severity": "HIGH",
+        "details": "Involved in 6 accidents (threshold: 1.18)"
+      },
+      {
+        "name": "KAELYN V. PIERCE",
+        "type": "STATISTICAL_OUTLIER",
+        "accident_count": 6,
+        "threshold": 1.1789600967351874,
+        "severity": "HIGH",
+        "details": "Involved in 6 accidents (threshold: 1.18)"
+      },
+      {
+        "name": "ALEXANDRA O. SAWYER",
+        "type": "STATISTICAL_OUTLIER",
+        "accident_count": 6,
+        "threshold": 1.1789600967351874,
+        "severity": "HIGH",
+        "details": "Involved in 6 accidents (threshold: 1.18)"
+      },
+      {
+        "name": "JASON C. ROBERTS",
+        "type": "STATISTICAL_OUTLIER",
+        "accident_count": 6,
+        "threshold": 1.1789600967351874,
+        "severity": "HIGH",
+        "details": "Involved in 6 accidents (threshold: 1.18)"
+      },
+      {
+        "name": "DAVID G. BRIEN",
+        "type": "STATISTICAL_OUTLIER",
+        "accident_count": 6,
+        "threshold": 1.1789600967351874,
+        "severity": "HIGH",
+        "details": "Involved in 6 accidents (threshold: 1.18)"
+      },
+      {
+        "name": "JAMES O. GRIFFIN",
+        "type": "STATISTICAL_OUTLIER",
+        "accident_count": 6,
+        "threshold": 1.1789600967351874,
+        "severity": "HIGH",
+        "details": "Involved in 6 accidents (threshold: 1.18)"
+      },
+      {
+        "name": "MADISON F. HUGHES",
+        "type": "STATISTICAL_OUTLIER",
+        "accident_count": 6,
+        "threshold": 1.1789600967351874,
+        "severity": "HIGH",
+        "details": "Involved in 6 accidents (threshold: 1.18)"
+      }
+    ],
+    "time_patterns": [
+      {
+        "name": "JAMES K. CLARKE",
+        "type": "TIME_CLUSTER",
+        "accidents_in_window": 2,
+        "window_days": 30,
+        "severity": "MEDIUM",
+        "details": "2 accidents within 30 days"
+      },
+      {
+        "name": "BRIAN Y. GRADY",
+        "type": "TIME_CLUSTER",
+        "accidents_in_window": 2,
+        "window_days": 30,
+        "severity": "MEDIUM",
+        "details": "2 accidents within 30 days"
+      },
+      {
+        "name": "KAYLA J. JACKSON",
+        "type": "TIME_CLUSTER",
+        "accidents_in_window": 2,
+        "window_days": 30,
+        "severity": "MEDIUM",
+        "details": "2 accidents within 30 days"
+      },
+      {
+        "name": "BAILEY F. WOODS",
+        "type": "TIME_CLUSTER",
+        "accidents_in_window": 2,
+        "window_days": 30,
+        "severity": "MEDIUM",
+        "details": "2 accidents within 30 days"
+      },
+      {
+        "name": "CARL X. CURTIS",
+        "type": "TIME_CLUSTER",
+        "accidents_in_window": 2,
+        "window_days": 30,
+        "severity": "MEDIUM",
+        "details": "2 accidents within 30 days"
+      },
+      {
+        "name": "SARAH T. KENNEDY",
+        "type": "TIME_CLUSTER",
+        "accidents_in_window": 2,
+        "window_days": 30,
+        "severity": "MEDIUM",
+        "details": "2 accidents within 30 days"
+      },
+      {
+        "name": "BRUCE G. CAMPBELL",
+        "type": "TIME_CLUSTER",
+        "accidents_in_window": 2,
+        "window_days": 30,
+        "severity": "MEDIUM",
+        "details": "2 accidents within 30 days"
+      },
+      {
+        "name": "CAMILLA V. CARR",
+        "type": "TIME_CLUSTER",
+        "accidents_in_window": 2,
+        "window_days": 30,
+        "severity": "MEDIUM",
+        "details": "2 accidents within 30 days"
+      },
+      {
+        "name": "ROBERT L. HARVEY",
+        "type": "TIME_CLUSTER",
+        "accidents_in_window": 2,
+        "window_days": 30,
+        "severity": "MEDIUM",
+        "details": "2 accidents within 30 days"
+      },
+      {
+        "name": "GEORGE D. FELLOWS",
+        "type": "TIME_CLUSTER",
+        "accidents_in_window": 2,
+        "window_days": 30,
+        "severity": "MEDIUM",
+        "details": "2 accidents within 30 days"
+      },
+      {
+        "name": "ELENA I. MORGAN",
+        "type": "TIME_CLUSTER",
+        "accidents_in_window": 2,
+        "window_days": 30,
+        "severity": "MEDIUM",
+        "details": "2 accidents within 30 days"
+      },
+      {
+        "name": "JONATHAN L. HUDSON",
+        "type": "TIME_CLUSTER",
+        "accidents_in_window": 2,
+        "window_days": 30,
+        "severity": "MEDIUM",
+        "details": "2 accidents within 30 days"
+      },
+      {
+        "name": "JACK X. KING",
+        "type": "TIME_CLUSTER",
+        "accidents_in_window": 2,
+        "window_days": 30,
+        "severity": "MEDIUM",
+        "details": "2 accidents within 30 days"
+      },
+      {
+        "name": "KENNETH B. BECKETT",
+        "type": "TIME_CLUSTER",
+        "accidents_in_window": 2,
+        "window_days": 30,
+        "severity": "MEDIUM",
+        "details": "2 accidents within 30 days"
+      },
+      {
+        "name": "EDWARD K. MORRISON",
+        "type": "TIME_CLUSTER",
+        "accidents_in_window": 2,
+        "window_days": 30,
+        "severity": "MEDIUM",
+        "details": "2 accidents within 30 days"
+      },
+      {
+        "name": "SOPHIE I. HILL",
+        "type": "TIME_CLUSTER",
+        "accidents_in_window": 2,
+        "window_days": 30,
+        "severity": "MEDIUM",
+        "details": "2 accidents within 30 days"
+      },
+      {
+        "name": "LILY G. LLOYD",
+        "type": "TIME_CLUSTER",
+        "accidents_in_window": 2,
+        "window_days": 30,
+        "severity": "MEDIUM",
+        "details": "2 accidents within 30 days"
+      },
+      {
+        "name": "ANNA Q. WARNER",
+        "type": "TIME_CLUSTER",
+        "accidents_in_window": 2,
+        "window_days": 30,
+        "severity": "MEDIUM",
+        "details": "2 accidents within 30 days"
+      },
+      {
+        "name": "ANNABELLE U. SMITH",
+        "type": "TIME_CLUSTER",
+        "accidents_in_window": 2,
+        "window_days": 30,
+        "severity": "MEDIUM",
+        "details": "2 accidents within 30 days"
+      },
+      {
+        "name": "RICHARD F. PATTERSON",
+        "type": "TIME_CLUSTER",
+        "accidents_in_window": 2,
+        "window_days": 30,
+        "severity": "MEDIUM",
+        "details": "2 accidents within 30 days"
+      },
+      {
+        "name": "AALIYAH P. TAYLOR",
+        "type": "TIME_CLUSTER",
+        "accidents_in_window": 2,
+        "window_days": 30,
+        "severity": "MEDIUM",
+        "details": "2 accidents within 30 days"
+      },
+      {
+        "name": "ADDISON W. JEFFERSON",
+        "type": "TIME_CLUSTER",
+        "accidents_in_window": 2,
+        "window_days": 30,
+        "severity": "MEDIUM",
+        "details": "2 accidents within 30 days"
+      },
+      {
+        "name": "SCARLETT L. COOPER",
+        "type": "TIME_CLUSTER",
+        "accidents_in_window": 2,
+        "window_days": 30,
+        "severity": "MEDIUM",
+        "details": "2 accidents within 30 days"
+      },
+      {
+        "name": "KENNETH T. WRIGHT",
+        "type": "TIME_CLUSTER",
+        "accidents_in_window": 2,
+        "window_days": 30,
+        "severity": "MEDIUM",
+        "details": "2 accidents within 30 days"
+      },
+      {
+        "name": "CAMILLA D. MILLER",
+        "type": "TIME_CLUSTER",
+        "accidents_in_window": 2,
+        "window_days": 30,
+        "severity": "MEDIUM",
+        "details": "2 accidents within 30 days"
+      },
+      {
+        "name": "TIMOTHY M. BALDWIN",
+        "type": "TIME_CLUSTER",
+        "accidents_in_window": 2,
+        "window_days": 30,
+        "severity": "MEDIUM",
+        "details": "2 accidents within 30 days"
+      },
+      {
+        "name": "GARY D. HILL",
+        "type": "TIME_CLUSTER",
+        "accidents_in_window": 2,
+        "window_days": 30,
+        "severity": "MEDIUM",
+        "details": "2 accidents within 30 days"
+      },
+      {
+        "name": "JUAN Q. COOK",
+        "type": "TIME_CLUSTER",
+        "accidents_in_window": 2,
+        "window_days": 30,
+        "severity": "MEDIUM",
+        "details": "2 accidents within 30 days"
+      },
+      {
+        "name": "CHARLES G. REED",
+        "type": "TIME_CLUSTER",
+        "accidents_in_window": 2,
+        "window_days": 30,
+        "severity": "MEDIUM",
+        "details": "2 accidents within 30 days"
+      },
+      {
+        "name": "SADIE N. HARRIS",
+        "type": "TIME_CLUSTER",
+        "accidents_in_window": 2,
+        "window_days": 30,
+        "severity": "MEDIUM",
+        "details": "2 accidents within 30 days"
+      },
+      {
+        "name": "KAELYN V. PIERCE",
+        "type": "TIME_CLUSTER",
+        "accidents_in_window": 2,
+        "window_days": 30,
+        "severity": "MEDIUM",
+        "details": "2 accidents within 30 days"
+      },
+      {
+        "name": "ALEXANDRA O. SAWYER",
+        "type": "TIME_CLUSTER",
+        "accidents_in_window": 2,
+        "window_days": 30,
+        "severity": "MEDIUM",
+        "details": "2 accidents within 30 days"
+      },
+      {
+        "name": "JASON C. ROBERTS",
+        "type": "TIME_CLUSTER",
+        "accidents_in_window": 2,
+        "window_days": 30,
+        "severity": "MEDIUM",
+        "details": "2 accidents within 30 days"
+      },
+      {
+        "name": "DAVID G. BRIEN",
+        "type": "TIME_CLUSTER",
+        "accidents_in_window": 2,
+        "window_days": 30,
+        "severity": "MEDIUM",
+        "details": "2 accidents within 30 days"
+      },
+      {
+        "name": "JAMES O. GRIFFIN",
+        "type": "TIME_CLUSTER",
+        "accidents_in_window": 2,
+        "window_days": 30,
+        "severity": "MEDIUM",
+        "details": "2 accidents within 30 days"
+      },
+      {
+        "name": "MADISON F. HUGHES",
+        "type": "TIME_CLUSTER",
+        "accidents_in_window": 2,
+        "window_days": 30,
+        "severity": "MEDIUM",
+        "details": "2 accidents within 30 days"
+      }
+    ],
+    "repeated_cars": [],
+    "repeated_witnesses": [],
+    "role_switching": []
+  },
+  "fraud_flags": {
+    "JAMES K. CLARKE": [
+      "TIME_CLUSTER",
+      "STATISTICAL_OUTLIER"
+    ],
+    "BRIAN Y. GRADY": [
+      "TIME_CLUSTER",
+      "STATISTICAL_OUTLIER"
+    ],
+    "KAYLA J. JACKSON": [
+      "TIME_CLUSTER",
+      "STATISTICAL_OUTLIER"
+    ],
+    "BAILEY F. WOODS": [
+      "TIME_CLUSTER",
+      "STATISTICAL_OUTLIER"
+    ],
+    "CARL X. CURTIS": [
+      "TIME_CLUSTER",
+      "STATISTICAL_OUTLIER"
+    ],
+    "SARAH T. KENNEDY": [
+      "TIME_CLUSTER",
+      "STATISTICAL_OUTLIER"
+    ],
+    "BRUCE G. CAMPBELL": [
+      "TIME_CLUSTER",
+      "STATISTICAL_OUTLIER"
+    ],
+    "CAMILLA V. CARR": [
+      "TIME_CLUSTER",
+      "STATISTICAL_OUTLIER"
+    ],
+    "ROBERT L. HARVEY": [
+      "TIME_CLUSTER",
+      "STATISTICAL_OUTLIER"
+    ],
+    "GEORGE D. FELLOWS": [
+      "TIME_CLUSTER",
+      "STATISTICAL_OUTLIER"
+    ],
+    "ELENA I. MORGAN": [
+      "TIME_CLUSTER",
+      "STATISTICAL_OUTLIER"
+    ],
+    "JONATHAN L. HUDSON": [
+      "TIME_CLUSTER",
+      "STATISTICAL_OUTLIER"
+    ],
+    "JACK X. KING": [
+      "TIME_CLUSTER",
+      "STATISTICAL_OUTLIER"
+    ],
+    "KENNETH B. BECKETT": [
+      "TIME_CLUSTER",
+      "STATISTICAL_OUTLIER"
+    ],
+    "EDWARD K. MORRISON": [
+      "TIME_CLUSTER",
+      "STATISTICAL_OUTLIER"
+    ],
+    "SOPHIE I. HILL": [
+      "TIME_CLUSTER",
+      "STATISTICAL_OUTLIER"
+    ],
+    "LILY G. LLOYD": [
+      "TIME_CLUSTER",
+      "STATISTICAL_OUTLIER"
+    ],
+    "ANNA Q. WARNER": [
+      "TIME_CLUSTER",
+      "STATISTICAL_OUTLIER"
+    ],
+    "ANNABELLE U. SMITH": [
+      "TIME_CLUSTER",
+      "STATISTICAL_OUTLIER"
+    ],
+    "RICHARD F. PATTERSON": [
+      "TIME_CLUSTER",
+      "STATISTICAL_OUTLIER"
+    ],
+    "AALIYAH P. TAYLOR": [
+      "TIME_CLUSTER",
+      "STATISTICAL_OUTLIER"
+    ],
+    "ADDISON W. JEFFERSON": [
+      "TIME_CLUSTER",
+      "STATISTICAL_OUTLIER"
+    ],
+    "SCARLETT L. COOPER": [
+      "TIME_CLUSTER",
+      "STATISTICAL_OUTLIER"
+    ],
+    "KENNETH T. WRIGHT": [
+      "TIME_CLUSTER",
+      "STATISTICAL_OUTLIER"
+    ],
+    "CAMILLA D. MILLER": [
+      "TIME_CLUSTER",
+      "STATISTICAL_OUTLIER"
+    ],
+    "TIMOTHY M. BALDWIN": [
+      "TIME_CLUSTER",
+      "STATISTICAL_OUTLIER"
+    ],
+    "GARY D. HILL": [
+      "TIME_CLUSTER",
+      "STATISTICAL_OUTLIER"
+    ],
+    "JUAN Q. COOK": [
+      "TIME_CLUSTER",
+      "STATISTICAL_OUTLIER"
+    ],
+    "CHARLES G. REED": [
+      "TIME_CLUSTER",
+      "STATISTICAL_OUTLIER"
+    ],
+    "SADIE N. HARRIS": [
+      "TIME_CLUSTER",
+      "STATISTICAL_OUTLIER"
+    ],
+    "KAELYN V. PIERCE": [
+      "TIME_CLUSTER",
+      "STATISTICAL_OUTLIER"
+    ],
+    "ALEXANDRA O. SAWYER": [
+      "TIME_CLUSTER",
+      "STATISTICAL_OUTLIER"
+    ],
+    "JASON C. ROBERTS": [
+      "TIME_CLUSTER",
+      "STATISTICAL_OUTLIER"
+    ],
+    "DAVID G. BRIEN": [
+      "TIME_CLUSTER",
+      "STATISTICAL_OUTLIER"
+    ],
+    "JAMES O. GRIFFIN": [
+      "TIME_CLUSTER",
+      "STATISTICAL_OUTLIER"
+    ],
+    "MADISON F. HUGHES": [
+      "TIME_CLUSTER",
+      "STATISTICAL_OUTLIER"
+    ]
+  }
+}
