@@ -587,132 +587,514 @@
     ],
     "repeated_cars": [],
     "repeated_witnesses": [],
-    "role_switching": []
+    "role_switching": [
+      {
+        "name": "JAMES K. CLARKE",
+        "type": "ROLE_SWITCHING",
+        "roles": [
+          "Passenger",
+          "Driver"
+        ],
+        "severity": "MEDIUM",
+        "details": "Appears as both Passenger and Driver in different accidents"
+      },
+      {
+        "name": "BRIAN Y. GRADY",
+        "type": "ROLE_SWITCHING",
+        "roles": [
+          "Passenger",
+          "Driver"
+        ],
+        "severity": "MEDIUM",
+        "details": "Appears as both Passenger and Driver in different accidents"
+      },
+      {
+        "name": "KAYLA J. JACKSON",
+        "type": "ROLE_SWITCHING",
+        "roles": [
+          "Passenger",
+          "Driver"
+        ],
+        "severity": "MEDIUM",
+        "details": "Appears as both Passenger and Driver in different accidents"
+      },
+      {
+        "name": "BAILEY F. WOODS",
+        "type": "ROLE_SWITCHING",
+        "roles": [
+          "Passenger",
+          "Driver"
+        ],
+        "severity": "MEDIUM",
+        "details": "Appears as both Passenger and Driver in different accidents"
+      },
+      {
+        "name": "CARL X. CURTIS",
+        "type": "ROLE_SWITCHING",
+        "roles": [
+          "Passenger",
+          "Driver"
+        ],
+        "severity": "MEDIUM",
+        "details": "Appears as both Passenger and Driver in different accidents"
+      },
+      {
+        "name": "SARAH T. KENNEDY",
+        "type": "ROLE_SWITCHING",
+        "roles": [
+          "Passenger",
+          "Driver"
+        ],
+        "severity": "MEDIUM",
+        "details": "Appears as both Passenger and Driver in different accidents"
+      },
+      {
+        "name": "BRUCE G. CAMPBELL",
+        "type": "ROLE_SWITCHING",
+        "roles": [
+          "Passenger",
+          "Driver"
+        ],
+        "severity": "MEDIUM",
+        "details": "Appears as both Passenger and Driver in different accidents"
+      },
+      {
+        "name": "CAMILLA V. CARR",
+        "type": "ROLE_SWITCHING",
+        "roles": [
+          "Passenger",
+          "Driver"
+        ],
+        "severity": "MEDIUM",
+        "details": "Appears as both Passenger and Driver in different accidents"
+      },
+      {
+        "name": "ROBERT L. HARVEY",
+        "type": "ROLE_SWITCHING",
+        "roles": [
+          "Passenger",
+          "Driver"
+        ],
+        "severity": "MEDIUM",
+        "details": "Appears as both Passenger and Driver in different accidents"
+      },
+      {
+        "name": "GEORGE D. FELLOWS",
+        "type": "ROLE_SWITCHING",
+        "roles": [
+          "Passenger",
+          "Driver"
+        ],
+        "severity": "MEDIUM",
+        "details": "Appears as both Passenger and Driver in different accidents"
+      },
+      {
+        "name": "ELENA I. MORGAN",
+        "type": "ROLE_SWITCHING",
+        "roles": [
+          "Passenger",
+          "Driver"
+        ],
+        "severity": "MEDIUM",
+        "details": "Appears as both Passenger and Driver in different accidents"
+      },
+      {
+        "name": "JONATHAN L. HUDSON",
+        "type": "ROLE_SWITCHING",
+        "roles": [
+          "Passenger",
+          "Driver"
+        ],
+        "severity": "MEDIUM",
+        "details": "Appears as both Passenger and Driver in different accidents"
+      },
+      {
+        "name": "JACK X. KING",
+        "type": "ROLE_SWITCHING",
+        "roles": [
+          "Passenger",
+          "Driver"
+        ],
+        "severity": "MEDIUM",
+        "details": "Appears as both Passenger and Driver in different accidents"
+      },
+      {
+        "name": "KENNETH B. BECKETT",
+        "type": "ROLE_SWITCHING",
+        "roles": [
+          "Passenger",
+          "Driver"
+        ],
+        "severity": "MEDIUM",
+        "details": "Appears as both Passenger and Driver in different accidents"
+      },
+      {
+        "name": "EDWARD K. MORRISON",
+        "type": "ROLE_SWITCHING",
+        "roles": [
+          "Passenger",
+          "Driver"
+        ],
+        "severity": "MEDIUM",
+        "details": "Appears as both Passenger and Driver in different accidents"
+      },
+      {
+        "name": "SOPHIE I. HILL",
+        "type": "ROLE_SWITCHING",
+        "roles": [
+          "Passenger",
+          "Driver"
+        ],
+        "severity": "MEDIUM",
+        "details": "Appears as both Passenger and Driver in different accidents"
+      },
+      {
+        "name": "LILY G. LLOYD",
+        "type": "ROLE_SWITCHING",
+        "roles": [
+          "Passenger",
+          "Driver"
+        ],
+        "severity": "MEDIUM",
+        "details": "Appears as both Passenger and Driver in different accidents"
+      },
+      {
+        "name": "ANNA Q. WARNER",
+        "type": "ROLE_SWITCHING",
+        "roles": [
+          "Passenger",
+          "Driver"
+        ],
+        "severity": "MEDIUM",
+        "details": "Appears as both Passenger and Driver in different accidents"
+      },
+      {
+        "name": "ANNABELLE U. SMITH",
+        "type": "ROLE_SWITCHING",
+        "roles": [
+          "Passenger",
+          "Driver"
+        ],
+        "severity": "MEDIUM",
+        "details": "Appears as both Passenger and Driver in different accidents"
+      },
+      {
+        "name": "RICHARD F. PATTERSON",
+        "type": "ROLE_SWITCHING",
+        "roles": [
+          "Passenger",
+          "Driver"
+        ],
+        "severity": "MEDIUM",
+        "details": "Appears as both Passenger and Driver in different accidents"
+      },
+      {
+        "name": "AALIYAH P. TAYLOR",
+        "type": "ROLE_SWITCHING",
+        "roles": [
+          "Passenger",
+          "Driver"
+        ],
+        "severity": "MEDIUM",
+        "details": "Appears as both Passenger and Driver in different accidents"
+      },
+      {
+        "name": "ADDISON W. JEFFERSON",
+        "type": "ROLE_SWITCHING",
+        "roles": [
+          "Passenger",
+          "Driver"
+        ],
+        "severity": "MEDIUM",
+        "details": "Appears as both Passenger and Driver in different accidents"
+      },
+      {
+        "name": "SCARLETT L. COOPER",
+        "type": "ROLE_SWITCHING",
+        "roles": [
+          "Passenger",
+          "Driver"
+        ],
+        "severity": "MEDIUM",
+        "details": "Appears as both Passenger and Driver in different accidents"
+      },
+      {
+        "name": "KENNETH T. WRIGHT",
+        "type": "ROLE_SWITCHING",
+        "roles": [
+          "Passenger",
+          "Driver"
+        ],
+        "severity": "MEDIUM",
+        "details": "Appears as both Passenger and Driver in different accidents"
+      },
+      {
+        "name": "CAMILLA D. MILLER",
+        "type": "ROLE_SWITCHING",
+        "roles": [
+          "Passenger",
+          "Driver"
+        ],
+        "severity": "MEDIUM",
+        "details": "Appears as both Passenger and Driver in different accidents"
+      },
+      {
+        "name": "TIMOTHY M. BALDWIN",
+        "type": "ROLE_SWITCHING",
+        "roles": [
+          "Passenger",
+          "Driver"
+        ],
+        "severity": "MEDIUM",
+        "details": "Appears as both Passenger and Driver in different accidents"
+      },
+      {
+        "name": "GARY D. HILL",
+        "type": "ROLE_SWITCHING",
+        "roles": [
+          "Passenger",
+          "Driver"
+        ],
+        "severity": "MEDIUM",
+        "details": "Appears as both Passenger and Driver in different accidents"
+      },
+      {
+        "name": "JUAN Q. COOK",
+        "type": "ROLE_SWITCHING",
+        "roles": [
+          "Passenger",
+          "Driver"
+        ],
+        "severity": "MEDIUM",
+        "details": "Appears as both Passenger and Driver in different accidents"
+      },
+      {
+        "name": "CHARLES G. REED",
+        "type": "ROLE_SWITCHING",
+        "roles": [
+          "Passenger",
+          "Driver"
+        ],
+        "severity": "MEDIUM",
+        "details": "Appears as both Passenger and Driver in different accidents"
+      },
+      {
+        "name": "SADIE N. HARRIS",
+        "type": "ROLE_SWITCHING",
+        "roles": [
+          "Passenger",
+          "Driver"
+        ],
+        "severity": "MEDIUM",
+        "details": "Appears as both Passenger and Driver in different accidents"
+      },
+      {
+        "name": "KAELYN V. PIERCE",
+        "type": "ROLE_SWITCHING",
+        "roles": [
+          "Passenger",
+          "Driver"
+        ],
+        "severity": "MEDIUM",
+        "details": "Appears as both Passenger and Driver in different accidents"
+      },
+      {
+        "name": "JASON C. ROBERTS",
+        "type": "ROLE_SWITCHING",
+        "roles": [
+          "Passenger",
+          "Driver"
+        ],
+        "severity": "MEDIUM",
+        "details": "Appears as both Passenger and Driver in different accidents"
+      },
+      {
+        "name": "DAVID G. BRIEN",
+        "type": "ROLE_SWITCHING",
+        "roles": [
+          "Passenger",
+          "Driver"
+        ],
+        "severity": "MEDIUM",
+        "details": "Appears as both Passenger and Driver in different accidents"
+      },
+      {
+        "name": "JAMES O. GRIFFIN",
+        "type": "ROLE_SWITCHING",
+        "roles": [
+          "Passenger",
+          "Driver"
+        ],
+        "severity": "MEDIUM",
+        "details": "Appears as both Passenger and Driver in different accidents"
+      },
+      {
+        "name": "MADISON F. HUGHES",
+        "type": "ROLE_SWITCHING",
+        "roles": [
+          "Passenger",
+          "Driver"
+        ],
+        "severity": "MEDIUM",
+        "details": "Appears as both Passenger and Driver in different accidents"
+      }
+    ]
   },
   "fraud_flags": {
     "JAMES K. CLARKE": [
       "TIME_CLUSTER",
-      "STATISTICAL_OUTLIER"
+      "STATISTICAL_OUTLIER",
+      "ROLE_SWITCHING"
     ],
     "BRIAN Y. GRADY": [
       "TIME_CLUSTER",
-      "STATISTICAL_OUTLIER"
+      "STATISTICAL_OUTLIER",
+      "ROLE_SWITCHING"
     ],
     "KAYLA J. JACKSON": [
       "TIME_CLUSTER",
-      "STATISTICAL_OUTLIER"
+      "STATISTICAL_OUTLIER",
+      "ROLE_SWITCHING"
     ],
     "BAILEY F. WOODS": [
       "TIME_CLUSTER",
-      "STATISTICAL_OUTLIER"
+      "STATISTICAL_OUTLIER",
+      "ROLE_SWITCHING"
     ],
     "CARL X. CURTIS": [
       "TIME_CLUSTER",
-      "STATISTICAL_OUTLIER"
+      "STATISTICAL_OUTLIER",
+      "ROLE_SWITCHING"
     ],
     "SARAH T. KENNEDY": [
       "TIME_CLUSTER",
-      "STATISTICAL_OUTLIER"
+      "STATISTICAL_OUTLIER",
+      "ROLE_SWITCHING"
     ],
     "BRUCE G. CAMPBELL": [
       "TIME_CLUSTER",
-      "STATISTICAL_OUTLIER"
+      "STATISTICAL_OUTLIER",
+      "ROLE_SWITCHING"
     ],
     "CAMILLA V. CARR": [
       "TIME_CLUSTER",
-      "STATISTICAL_OUTLIER"
+      "STATISTICAL_OUTLIER",
+      "ROLE_SWITCHING"
     ],
     "ROBERT L. HARVEY": [
       "TIME_CLUSTER",
-      "STATISTICAL_OUTLIER"
+      "STATISTICAL_OUTLIER",
+      "ROLE_SWITCHING"
     ],
     "GEORGE D. FELLOWS": [
       "TIME_CLUSTER",
-      "STATISTICAL_OUTLIER"
+      "STATISTICAL_OUTLIER",
+      "ROLE_SWITCHING"
     ],
     "ELENA I. MORGAN": [
       "TIME_CLUSTER",
-      "STATISTICAL_OUTLIER"
+      "STATISTICAL_OUTLIER",
+      "ROLE_SWITCHING"
     ],
     "JONATHAN L. HUDSON": [
       "TIME_CLUSTER",
-      "STATISTICAL_OUTLIER"
+      "STATISTICAL_OUTLIER",
+      "ROLE_SWITCHING"
     ],
     "JACK X. KING": [
       "TIME_CLUSTER",
-      "STATISTICAL_OUTLIER"
+      "STATISTICAL_OUTLIER",
+      "ROLE_SWITCHING"
     ],
     "KENNETH B. BECKETT": [
       "TIME_CLUSTER",
-      "STATISTICAL_OUTLIER"
+      "STATISTICAL_OUTLIER",
+      "ROLE_SWITCHING"
     ],
     "EDWARD K. MORRISON": [
       "TIME_CLUSTER",
-      "STATISTICAL_OUTLIER"
+      "STATISTICAL_OUTLIER",
+      "ROLE_SWITCHING"
     ],
     "SOPHIE I. HILL": [
       "TIME_CLUSTER",
-      "STATISTICAL_OUTLIER"
+      "STATISTICAL_OUTLIER",
+      "ROLE_SWITCHING"
     ],
     "LILY G. LLOYD": [
       "TIME_CLUSTER",
-      "STATISTICAL_OUTLIER"
+      "STATISTICAL_OUTLIER",
+      "ROLE_SWITCHING"
     ],
     "ANNA Q. WARNER": [
       "TIME_CLUSTER",
-      "STATISTICAL_OUTLIER"
+      "STATISTICAL_OUTLIER",
+      "ROLE_SWITCHING"
     ],
     "ANNABELLE U. SMITH": [
       "TIME_CLUSTER",
-      "STATISTICAL_OUTLIER"
+      "STATISTICAL_OUTLIER",
+      "ROLE_SWITCHING"
     ],
     "RICHARD F. PATTERSON": [
       "TIME_CLUSTER",
-      "STATISTICAL_OUTLIER"
+      "STATISTICAL_OUTLIER",
+      "ROLE_SWITCHING"
     ],
     "AALIYAH P. TAYLOR": [
       "TIME_CLUSTER",
-      "STATISTICAL_OUTLIER"
+      "STATISTICAL_OUTLIER",
+      "ROLE_SWITCHING"
     ],
     "ADDISON W. JEFFERSON": [
       "TIME_CLUSTER",
-      "STATISTICAL_OUTLIER"
+      "STATISTICAL_OUTLIER",
+      "ROLE_SWITCHING"
     ],
     "SCARLETT L. COOPER": [
       "TIME_CLUSTER",
-      "STATISTICAL_OUTLIER"
+      "STATISTICAL_OUTLIER",
+      "ROLE_SWITCHING"
     ],
     "KENNETH T. WRIGHT": [
       "TIME_CLUSTER",
-      "STATISTICAL_OUTLIER"
+      "STATISTICAL_OUTLIER",
+      "ROLE_SWITCHING"
     ],
     "CAMILLA D. MILLER": [
       "TIME_CLUSTER",
-      "STATISTICAL_OUTLIER"
+      "STATISTICAL_OUTLIER",
+      "ROLE_SWITCHING"
     ],
     "TIMOTHY M. BALDWIN": [
       "TIME_CLUSTER",
-      "STATISTICAL_OUTLIER"
+      "STATISTICAL_OUTLIER",
+      "ROLE_SWITCHING"
     ],
     "GARY D. HILL": [
       "TIME_CLUSTER",
-      "STATISTICAL_OUTLIER"
+      "STATISTICAL_OUTLIER",
+      "ROLE_SWITCHING"
     ],
     "JUAN Q. COOK": [
       "TIME_CLUSTER",
-      "STATISTICAL_OUTLIER"
+      "STATISTICAL_OUTLIER",
+      "ROLE_SWITCHING"
     ],
     "CHARLES G. REED": [
       "TIME_CLUSTER",
-      "STATISTICAL_OUTLIER"
+      "STATISTICAL_OUTLIER",
+      "ROLE_SWITCHING"
     ],
     "SADIE N. HARRIS": [
       "TIME_CLUSTER",
-      "STATISTICAL_OUTLIER"
+      "STATISTICAL_OUTLIER",
+      "ROLE_SWITCHING"
     ],
     "KAELYN V. PIERCE": [
       "TIME_CLUSTER",
-      "STATISTICAL_OUTLIER"
+      "STATISTICAL_OUTLIER",
+      "ROLE_SWITCHING"
     ],
     "ALEXANDRA O. SAWYER": [
       "TIME_CLUSTER",
@@ -720,19 +1102,23 @@
     ],
     "JASON C. ROBERTS": [
       "TIME_CLUSTER",
-      "STATISTICAL_OUTLIER"
+      "STATISTICAL_OUTLIER",
+      "ROLE_SWITCHING"
     ],
     "DAVID G. BRIEN": [
       "TIME_CLUSTER",
-      "STATISTICAL_OUTLIER"
+      "STATISTICAL_OUTLIER",
+      "ROLE_SWITCHING"
     ],
     "JAMES O. GRIFFIN": [
       "TIME_CLUSTER",
-      "STATISTICAL_OUTLIER"
+      "STATISTICAL_OUTLIER",
+      "ROLE_SWITCHING"
     ],
     "MADISON F. HUGHES": [
       "TIME_CLUSTER",
-      "STATISTICAL_OUTLIER"
+      "STATISTICAL_OUTLIER",
+      "ROLE_SWITCHING"
     ]
   }
 }

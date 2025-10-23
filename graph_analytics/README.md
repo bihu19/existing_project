@@ -36,8 +36,8 @@ The dataset (`insurance-fraud-data.json`) contains:
 
 ### 5. Role Switching Detection
 - **Logic**: Identifies people who appear as driver in some accidents and passenger in others
-- **Method**: Tracks role changes across accidents (potential organized fraud)
-- **Results**: No role switching found in this dataset
+- **Method**: Parses comma-separated role fields and tracks role changes across accidents (potential organized fraud)
+- **Results**: Detected 35 suspicious role switchers
 
 ## Key Findings
 
@@ -46,13 +46,18 @@ The dataset (`insurance-fraud-data.json`) contains:
 **Top Suspects** (involved in 6 accidents each):
 - ROBERT L. HARVEY
 - GEORGE D. FELLOWS
-- ELENA I. MORGAN
+- ELENA I. MORGAN (ID: 552 - confirmed role switcher)
 - JONATHAN L. HUDSON
 - JACK X. KING
 - KENNETH B. BECKETT
 - And 20+ others
 
-All flagged individuals have **multiple fraud indicators** (both statistical outlier and time-based clustering).
+All flagged individuals have **THREE fraud indicators**:
+1. Statistical outlier (multiple accidents beyond threshold)
+2. Time-based clustering (accidents within 30 days)
+3. **Role switching** (alternating between Driver and Passenger roles)
+
+This pattern strongly suggests **organized fraud rings** where the same people coordinate to stage accidents in different roles.
 
 ## Files
 
