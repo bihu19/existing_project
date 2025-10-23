@@ -209,9 +209,15 @@ class FraudDetector:
         for node in self.nodes:
             if node['type'] == 'Participant' and isinstance(node.get('info'), dict):
                 name = node['info']['name']
-                role = node['info'].get('role', '')
-                if role in ['Driver', 'Passenger']:
-                    person_roles[name].add(role)
+                role_string = node['info'].get('role', '')
+
+                # Role can be comma-separated like 'Driver,Passenger,Witness,Witness'
+                # Parse and extract individual roles
+                if role_string:
+                    roles = [r.strip() for r in role_string.split(',')]
+                    for role in roles:
+                        if role in ['Driver', 'Passenger']:
+                            person_roles[name].add(role)
 
         for name, roles in person_roles.items():
             if len(roles) > 1:  # Has both Driver and Passenger roles
