@@ -44,11 +44,17 @@ class InteractiveFraudExplorer:
     def build_indexes(self):
         """Build helper indexes"""
         self.fraud_nodes = set()
+        self.fraud_professionals = set()  # Doctors/Lawyers with multiple suspicious clients
+
         for node in self.nodes:
             if isinstance(node.get('info'), dict) and 'name' in node['info']:
                 name = node['info']['name']
                 if name in self.fraud_flags:
                     self.fraud_nodes.add(node['id'])
+                    # Check if this is a suspicious professional
+                    if node['type'] in ['Doctor', 'Lawyer']:
+                        if 'SUSPICIOUS_PROFESSIONAL' in self.fraud_flags.get(name, []):
+                            self.fraud_professionals.add(node['id'])
 
     def create_interactive_graph(self, fraud_filter="All", node_type_filter="All", max_nodes=500):
         """
@@ -188,6 +194,7 @@ class InteractiveFraudExplorer:
 
         node_traces = []
         node_types_present = defaultdict(lambda: {'x': [], 'y': [], 'text': [], 'customdata': []})
+        suspicious_professional_traces = defaultdict(lambda: {'x': [], 'y': [], 'text': [], 'customdata': []})
         fraud_trace_data = {'x': [], 'y': [], 'text': [], 'customdata': []}
 
         for node_id in G.nodes():
@@ -196,6 +203,7 @@ class InteractiveFraudExplorer:
             label = node_data['label']
             node_type = node_data['type']
             is_fraud = node_data['is_fraud']
+            is_suspicious_professional = node_id in self.fraud_professionals
 
             # Create hover text
             hover_text = f"<b>{label}</b><br>Type: {node_type}<br>ID: {node_id}"
@@ -203,24 +211,32 @@ class InteractiveFraudExplorer:
                 flags = self.fraud_flags.get(label, [])
                 hover_text += f"<br><b style='color:red'>⚠ SUSPICIOUS</b><br>Indicators: {', '.join(flags)}"
 
-            if is_fraud:
+            if is_suspicious_professional:
+                # Suspicious professional: same color as type, but in separate trace for larger size
+                suspicious_professional_traces[node_type]['x'].append(x)
+                suspicious_professional_traces[node_type]['y'].append(y)
+                suspicious_professional_traces[node_type]['text'].append(hover_text)
+                suspicious_professional_traces[node_type]['customdata'].append(node_id)
+            elif is_fraud:
+                # Suspicious participant: red color
                 fraud_trace_data['x'].append(x)
                 fraud_trace_data['y'].append(y)
                 fraud_trace_data['text'].append(hover_text)
                 fraud_trace_data['customdata'].append(node_id)
             else:
+                # Normal nodes
                 node_types_present[node_type]['x'].append(x)
                 node_types_present[node_type]['y'].append(y)
                 node_types_present[node_type]['text'].append(hover_text)
                 node_types_present[node_type]['customdata'].append(node_id)
 
-        # Add fraud nodes first (on top)
+        # Add fraud participant nodes first (on top)
         if fraud_trace_data['x']:
             fraud_trace = go.Scatter(
                 x=fraud_trace_data['x'],
                 y=fraud_trace_data['y'],
                 mode='markers',
-                name='SUSPICIOUS (Fraud)',
+                name='SUSPICIOUS Participant',
                 marker=dict(
                     size=15,
                     color='#FF0000',
@@ -232,6 +248,30 @@ class InteractiveFraudExplorer:
                 showlegend=True
             )
             node_traces.append(fraud_trace)
+
+        # Add suspicious professional traces (larger size, normal color)
+        node_colors_map = {
+            'Lawyer': '#FFE66D',
+            'Doctor': '#95E1D3',
+        }
+        for prof_type, data in suspicious_professional_traces.items():
+            if data['x']:
+                prof_trace = go.Scatter(
+                    x=data['x'],
+                    y=data['y'],
+                    mode='markers',
+                    name=f'SUSPICIOUS {prof_type}',
+                    marker=dict(
+                        size=25,  # Larger than normal
+                        color=node_colors_map.get(prof_type, '#CCCCCC'),
+                        line=dict(width=3, color='#FF0000')  # Red border to show suspicious
+                    ),
+                    text=data['text'],
+                    hoverinfo='text',
+                    customdata=data['customdata'],
+                    showlegend=True
+                )
+                node_traces.append(prof_trace)
 
         # Add other node types
         for node_type, data in node_types_present.items():
@@ -352,6 +392,14 @@ class InteractiveFraudExplorer:
             summary += f"**Role Switching**: {len(role_switching)} individuals\n\n"
         else:
             summary += "**Role Switching**: None detected\n\n"
+
+        suspicious_professionals = findings.get('suspicious_professionals', [])
+        if suspicious_professionals:
+            summary += f"**Suspicious Professionals**: {len(suspicious_professionals)} doctors/lawyers\n"
+            summary += "   - Working with multiple suspicious clients\n"
+            summary += "   - Examples: " + ", ".join([x['name'] + f" ({x['suspicious_clients']} clients)" for x in suspicious_professionals[:3]]) + "\n\n"
+        else:
+            summary += "**Suspicious Professionals**: None detected\n\n"
 
         return summary
 

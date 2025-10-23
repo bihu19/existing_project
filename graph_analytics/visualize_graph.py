@@ -61,13 +61,19 @@ def create_full_graph_visualization(nodes, edges, fraud_flags, output_file='grap
 
     # Create fraud lookup for faster checking
     fraud_names = set()
+    fraud_professionals = set()  # Doctors/Lawyers with SUSPICIOUS_PROFESSIONAL flag
+
     for node in nodes:
         if isinstance(node.get('info'), dict) and 'name' in node['info']:
             name = node['info']['name']
             if name in fraud_flags:
                 fraud_names.add(name)
+                # Check if this is a suspicious professional (not a participant)
+                if node['type'] in ['Doctor', 'Lawyer']:
+                    if 'SUSPICIOUS_PROFESSIONAL' in fraud_flags.get(name, []):
+                        fraud_professionals.add(name)
 
-    # Assign colors to nodes
+    # Assign colors and sizes to nodes
     node_colors = []
     node_sizes = []
     for node_id in G.nodes():
@@ -75,13 +81,20 @@ def create_full_graph_visualization(nodes, edges, fraud_flags, output_file='grap
         node_type = node_data['type']
         label = node_data['label']
 
-        # Check if this is a suspicious node
+        # Check if suspicious
         is_suspicious = label in fraud_names
+        is_suspicious_professional = label in fraud_professionals
 
-        if is_suspicious:
-            node_colors.append('#FF0000')  # Bright red for fraud
+        if is_suspicious_professional:
+            # Suspicious professional: KEEP normal color but LARGER size
+            node_colors.append(node_colors_map.get(node_type, '#CCCCCC'))
+            node_sizes.append(200)  # Larger than normal
+        elif is_suspicious:
+            # Suspicious participant: RED color, large size
+            node_colors.append('#FF0000')
             node_sizes.append(150)
         else:
+            # Normal nodes
             node_colors.append(node_colors_map.get(node_type, '#CCCCCC'))
             node_sizes.append(50)
 
@@ -116,11 +129,17 @@ def create_full_graph_visualization(nodes, edges, fraud_flags, output_file='grap
     legend_elements = []
     for node_type, color in node_colors_map.items():
         legend_elements.append(mpatches.Patch(color=color, label=node_type))
-    legend_elements.append(mpatches.Patch(color='#FF0000', label='Suspicious (Fraud)'))
+    legend_elements.append(mpatches.Patch(color='#FF0000', label='Suspicious Participant (Red)'))
+
+    # Add note about size
+    from matplotlib.lines import Line2D
+    size_note = Line2D([0], [0], marker='o', color='w', markerfacecolor='gray',
+                      markersize=12, label='Larger size = Suspicious Professional')
+    legend_elements.append(size_note)
 
     ax.legend(handles=legend_elements, loc='upper left', fontsize=10)
 
-    plt.title('Insurance Claims Network - Full Graph\n(Red nodes indicate suspicious/fraudulent activity)',
+    plt.title('Insurance Claims Network - Full Graph\n(Red = Suspicious Participants | Larger nodes = Suspicious Doctors/Lawyers)',
               fontsize=16, fontweight='bold')
     plt.axis('off')
     plt.tight_layout()
@@ -187,13 +206,19 @@ def create_fraud_subgraph_visualization(nodes, edges, fraud_flags, output_file='
 
     # Create fraud lookup
     fraud_names = set()
+    fraud_professionals = set()  # Doctors/Lawyers with SUSPICIOUS_PROFESSIONAL flag
+
     for node in nodes:
         if isinstance(node.get('info'), dict) and 'name' in node['info']:
             name = node['info']['name']
             if name in fraud_flags:
                 fraud_names.add(name)
+                # Check if this is a suspicious professional
+                if node['type'] in ['Doctor', 'Lawyer']:
+                    if 'SUSPICIOUS_PROFESSIONAL' in fraud_flags.get(name, []):
+                        fraud_professionals.add(name)
 
-    # Assign colors
+    # Assign colors and sizes
     node_colors = []
     node_sizes = []
     edge_widths = []
@@ -205,11 +230,18 @@ def create_fraud_subgraph_visualization(nodes, edges, fraud_flags, output_file='
         label = node_data['label']
 
         is_suspicious = label in fraud_names
+        is_suspicious_professional = label in fraud_professionals
 
-        if is_suspicious:
+        if is_suspicious_professional:
+            # Suspicious professional: KEEP normal color but LARGER size
+            node_colors.append(node_colors_map.get(node_type, '#CCCCCC'))
+            node_sizes.append(400)  # Extra large for subgraph
+        elif is_suspicious:
+            # Suspicious participant: RED color, large size
             node_colors.append('#FF0000')
             node_sizes.append(300)
         else:
+            # Normal nodes
             node_colors.append(node_colors_map.get(node_type, '#CCCCCC'))
             node_sizes.append(100)
 
@@ -251,21 +283,28 @@ def create_fraud_subgraph_visualization(nodes, edges, fraud_flags, output_file='
     nx.draw_networkx_edge_labels(subgraph, pos, edge_labels, font_size=5, alpha=0.6, ax=ax)
 
     # Create legend
+    from matplotlib.lines import Line2D
     legend_elements = []
     for node_type, color in node_colors_map.items():
         legend_elements.append(mpatches.Patch(color=color, label=node_type))
-    legend_elements.append(mpatches.Patch(color='#FF0000', label='SUSPICIOUS (Fraud Detected)'))
+    legend_elements.append(mpatches.Patch(color='#FF0000', label='Suspicious Participant'))
+
+    # Add note about suspicious professionals
+    size_note = Line2D([0], [0], marker='o', color='w', markerfacecolor='gray',
+                      markersize=15, label='Extra Large = Suspicious Doctor/Lawyer')
+    legend_elements.append(size_note)
 
     ax.legend(handles=legend_elements, loc='upper left', fontsize=12)
 
     # Add fraud statistics
     fraud_count = len([n for n in subgraph.nodes() if subgraph.nodes[n]['label'] in fraud_names])
-    stats_text = f"Suspicious Entities: {fraud_count}\nTotal Connected Entities: {len(subgraph.nodes())}"
+    professional_count = len([n for n in subgraph.nodes() if subgraph.nodes[n]['label'] in fraud_professionals])
+    stats_text = f"Suspicious Participants: {fraud_count - professional_count}\nSuspicious Professionals: {professional_count}\nTotal Connected: {len(subgraph.nodes())}"
     ax.text(0.02, 0.02, stats_text, transform=ax.transAxes,
             fontsize=12, verticalalignment='bottom',
             bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.5))
 
-    plt.title('Insurance Fraud Detection - Suspicious Activity Network\n(Red nodes are flagged as suspicious)',
+    plt.title('Insurance Fraud Detection - Suspicious Activity Network\n(Red = Participants | Extra Large = Doctors/Lawyers)',
               fontsize=18, fontweight='bold')
     plt.axis('off')
     plt.tight_layout()
