@@ -1,0 +1,12 @@
+node_modules
+.next
+.git
+.gitignore
+*.md
+prisma/dev.db
+prisma/dev.db-journal
+.env
+.env.local
+.env.*.local
+deploy/
+ecosystem.config.js
