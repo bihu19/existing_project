@@ -4,6 +4,7 @@
   "description": "Lightweight CRM for small consulting firms",
   "scripts": {
     "dev": "next dev",
+    "postinstall": "prisma generate",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
