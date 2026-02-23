@@ -20,6 +20,9 @@ export async function GET(request: NextRequest) {
   const target = searchParams.get("target") || "";
   const libPic = searchParams.get("libPic") || "";
 
+  const exportAll = searchParams.get("all") === "true";
+  const filtersParam = searchParams.get("filters") || "";
+
   const where: Record<string, unknown> = {};
 
   if (search) {
@@ -36,12 +39,42 @@ export async function GET(request: NextRequest) {
   if (target) where.target = target;
   if (libPic) where.libPic = libPic;
 
+  // Custom filters: JSON array of { field, operator, value }
+  if (filtersParam) {
+    try {
+      const filters = JSON.parse(filtersParam) as { field: string; operator: string; value: string }[];
+      const andConditions: Record<string, unknown>[] = [];
+      for (const f of filters) {
+        if (!f.field) continue;
+        switch (f.operator) {
+          case "contains":
+            andConditions.push({ [f.field]: { contains: f.value } });
+            break;
+          case "equals":
+            andConditions.push({ [f.field]: f.value });
+            break;
+          case "not_equals":
+            andConditions.push({ [f.field]: { not: f.value } });
+            break;
+          case "is_empty":
+            andConditions.push({ [f.field]: null });
+            break;
+          case "is_not_empty":
+            andConditions.push({ [f.field]: { not: null } });
+            break;
+        }
+      }
+      if (andConditions.length > 0) {
+        where.AND = andConditions;
+      }
+    } catch { /* ignore invalid JSON */ }
+  }
+
   const [accounts, total] = await Promise.all([
     prisma.account.findMany({
       where,
       orderBy: { [sortBy]: sortDir },
-      skip: (page - 1) * ROWS_PER_PAGE,
-      take: ROWS_PER_PAGE,
+      ...(exportAll ? {} : { skip: (page - 1) * ROWS_PER_PAGE, take: ROWS_PER_PAGE }),
     }),
     prisma.account.count({ where }),
   ]);
