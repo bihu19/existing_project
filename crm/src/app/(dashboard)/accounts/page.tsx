@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -382,6 +383,13 @@ export default function AccountsPage() {
   const renderCell = (acc: Account, col: ColumnDef) => {
     const v = acc[col.key];
     if (v === null || v === undefined) return "";
+    if (col.key === "name") {
+      return (
+        <Link href={`/accounts/${acc.id}`} className="text-[var(--primary)] hover:underline">
+          {String(v)}
+        </Link>
+      );
+    }
     if (col.key === "accountStatus") {
       return (
         <Badge variant={v === "Active" ? "default" : "secondary"}>{String(v)}</Badge>
