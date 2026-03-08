@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Textarea } from "@/components/ui/textarea";
 import {
   Dialog,
   DialogContent,
@@ -35,7 +36,7 @@ import { formatDate } from "@/lib/utils";
 import { CONTACT_STATUS_OPTIONS, ACCOUNT_STATUS_OPTIONS, INDUSTRY_OPTIONS } from "@/lib/constants";
 import {
   Plus, Search, ChevronLeft, ChevronRight, Pencil, Trash2,
-  Download, Upload, Columns3, Filter, X,
+  Download, Upload, Columns3, Filter, X, ChevronDown,
 } from "lucide-react";
 
 // ── Column definitions ──────────────────────────────────────────────
@@ -171,11 +172,13 @@ interface AccountOption {
 const emptyForm = {
   firstName: "", lastName: "", email: "", phone: "", mobilePhone: "",
   title: "", department: "", contactStatus: "", accountId: "", personCountry: "",
+  description: "",
 };
 
 const IMPORTABLE_FIELDS = [
   { value: "", label: "— Skip —" },
-  { value: "accountName", label: "Account Name (maps to Account)" },
+  { value: "accountId", label: "Account ID (exact match — preferred)" },
+  { value: "accountName", label: "Account Name (fuzzy match — fallback)" },
   { value: "firstName", label: "First Name" },
   { value: "lastName", label: "Last Name" },
   { value: "email", label: "Email" },
@@ -198,6 +201,17 @@ const IMPORTABLE_FIELDS = [
   { value: "titleFormat", label: "Title Format" },
 ];
 
+// ── Detail item for expanded row ─────────────────────────────────────
+function DetailItem({ label, value }: { label: string; value: string | null | undefined }) {
+  if (!value) return null;
+  return (
+    <div>
+      <span className="text-xs font-medium text-[var(--muted-foreground)]">{label}</span>
+      <p className="text-sm">{value}</p>
+    </div>
+  );
+}
+
 // ── Component ───────────────────────────────────────────────────────
 export default function ContactsPage() {
   const [contacts, setContacts] = useState<Contact[]>([]);
@@ -209,6 +223,9 @@ export default function ContactsPage() {
   const [editId, setEditId] = useState<string | null>(null);
   const [form, setForm] = useState(emptyForm);
   const [loading, setLoading] = useState(false);
+
+  // Expandable row
+  const [expandedId, setExpandedId] = useState<string | null>(null);
 
   // Account search (type-ahead)
   const [accountSearch, setAccountSearch] = useState("");
@@ -306,6 +323,7 @@ export default function ContactsPage() {
         phone: c.phone || "", mobilePhone: c.mobilePhone || "", title: c.title || "",
         department: c.department || "", contactStatus: c.contactStatus || "",
         accountId: c.accountId || "", personCountry: c.personCountry || "",
+        description: c.description || "",
       });
       setSelectedAccountName(c.account?.name || "");
       setAccountSearch(c.account?.name || "");
@@ -427,15 +445,17 @@ export default function ContactsPage() {
   const handleImport = async () => {
     setImporting(true);
 
-    // Build account name → ID lookup for rows that have accountName mapped
+    // Build account lookup caches
     const accountNameCache: Record<string, string> = {};
+    const accountIdSet = new Set<string>();
     const hasAccountNameMapping = Object.values(fieldMapping).includes("accountName");
-    if (hasAccountNameMapping) {
-      // Fetch all accounts for matching
+    const hasAccountIdMapping = Object.values(fieldMapping).includes("accountId");
+    if (hasAccountNameMapping || hasAccountIdMapping) {
       const accRes = await fetch("/api/accounts?all=true&sortBy=name");
       if (accRes.ok) {
         const accData = await accRes.json();
         for (const a of accData.data || []) {
+          accountIdSet.add(a.id);
           accountNameCache[a.name.toLowerCase().trim()] = a.id;
         }
       }
@@ -449,14 +469,20 @@ export default function ContactsPage() {
           body[fieldKey] = row[parseInt(colIdx)].trim();
         }
       }
-      // Resolve accountName → accountId
-      if (body.accountName) {
+      // Priority 1: accountId — use directly if it exists in the accounts table
+      if (body.accountId) {
+        if (!accountIdSet.has(body.accountId)) {
+          delete body.accountId; // Invalid ID, discard
+        }
+      }
+      // Priority 2: accountName — only used as fallback when no valid accountId
+      if (!body.accountId && body.accountName) {
         const matchedId = accountNameCache[body.accountName.toLowerCase().trim()];
         if (matchedId) {
           body.accountId = matchedId;
         }
-        delete body.accountName;
       }
+      delete body.accountName;
       if (!body.firstName || !body.lastName || !body.email) { failed++; continue; }
       const res = await fetch("/api/contacts", {
         method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body),
@@ -591,33 +617,76 @@ export default function ContactsPage() {
       <Table>
         <TableHeader>
           <TableRow>
+            <TableHead className="w-8"></TableHead>
             {visibleColumns.map((c) => <TableHead key={c.key}>{c.label}</TableHead>)}
             <TableHead>Actions</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {contacts.map((ct) => (
-            <TableRow key={ct.id}>
-              {visibleColumns.map((c) => (
-                <TableCell key={c.key} className={c.key === "firstName" ? "font-medium" : ""}>
-                  {renderCell(ct, c)}
-                </TableCell>
-              ))}
-              <TableCell>
-                <div className="flex gap-1">
-                  <Button size="sm" variant="outline" onClick={() => openEdit(ct.id)}>
-                    <Pencil className="h-3 w-3" />
-                  </Button>
-                  <Button size="sm" variant="outline" onClick={() => handleDelete(ct.id)}>
-                    <Trash2 className="h-3 w-3" />
-                  </Button>
-                </div>
-              </TableCell>
-            </TableRow>
-          ))}
+          {contacts.map((ct) => {
+            const isExpanded = expandedId === ct.id;
+            return (
+              <>
+                <TableRow key={ct.id} className="cursor-pointer" onClick={() => setExpandedId(isExpanded ? null : ct.id)}>
+                  <TableCell className="w-8 px-2">
+                    <ChevronDown className={`h-4 w-4 transition-transform ${isExpanded ? "rotate-180" : ""}`} />
+                  </TableCell>
+                  {visibleColumns.map((c) => (
+                    <TableCell key={c.key} className={c.key === "firstName" ? "font-medium" : ""}>
+                      {renderCell(ct, c)}
+                    </TableCell>
+                  ))}
+                  <TableCell>
+                    <div className="flex gap-1" onClick={(e) => e.stopPropagation()}>
+                      <Button size="sm" variant="outline" onClick={() => openEdit(ct.id)}>
+                        <Pencil className="h-3 w-3" />
+                      </Button>
+                      <Button size="sm" variant="outline" onClick={() => handleDelete(ct.id)}>
+                        <Trash2 className="h-3 w-3" />
+                      </Button>
+                    </div>
+                  </TableCell>
+                </TableRow>
+                {isExpanded && (
+                  <TableRow key={`${ct.id}-detail`}>
+                    <TableCell colSpan={visibleColumns.length + 2} className="bg-[var(--accent)]/30 p-4">
+                      <div className="grid grid-cols-2 gap-x-8 gap-y-2 text-sm md:grid-cols-3 lg:grid-cols-4">
+                        <DetailItem label="First Name" value={ct.firstName} />
+                        <DetailItem label="Last Name" value={ct.lastName} />
+                        <DetailItem label="Email" value={ct.email} />
+                        <DetailItem label="Phone" value={ct.phone as string | null} />
+                        <DetailItem label="Mobile" value={ct.mobilePhone as string | null} />
+                        <DetailItem label="Title" value={ct.title as string | null} />
+                        <DetailItem label="Department" value={ct.department as string | null} />
+                        <DetailItem label="Status" value={ct.contactStatus as string | null} />
+                        <DetailItem label="Account" value={(ct.account as AccountOption | null)?.name || null} />
+                        <DetailItem label="Account ID" value={ct.accountId} />
+                        <DetailItem label="Salutation" value={ct.salutation as string | null} />
+                        <DetailItem label="Lead Source" value={ct.leadSource as string | null} />
+                        <DetailItem label="Rating" value={ct.rating as string | null} />
+                        <DetailItem label="Person Country" value={ct.personCountry as string | null} />
+                        <DetailItem label="City" value={ct.mailingCity as string | null} />
+                        <DetailItem label="State" value={ct.mailingState as string | null} />
+                        <DetailItem label="Country" value={ct.mailingCountry as string | null} />
+                        <DetailItem label="Executive" value={ct.executiveOrNot ? "Yes" : "No"} />
+                        <DetailItem label="Worth Following" value={ct.worthFollowing ? "Yes" : "No"} />
+                        <DetailItem label="Created" value={formatDate(ct.createdDate as string | null)} />
+                      </div>
+                      {ct.description && (
+                        <div className="mt-3">
+                          <span className="text-xs font-medium text-[var(--muted-foreground)]">Notes</span>
+                          <p className="text-sm mt-1 whitespace-pre-wrap">{String(ct.description)}</p>
+                        </div>
+                      )}
+                    </TableCell>
+                  </TableRow>
+                )}
+              </>
+            );
+          })}
           {contacts.length === 0 && (
             <TableRow>
-              <TableCell colSpan={visibleColumns.length + 1}
+              <TableCell colSpan={visibleColumns.length + 2}
                 className="text-center text-[var(--muted-foreground)]">No contacts found</TableCell>
             </TableRow>
           )}
@@ -745,6 +814,15 @@ export default function ContactsPage() {
             </div>
 
             <div><Label>Country</Label><Input value={form.personCountry} onChange={(e) => setForm({ ...form, personCountry: e.target.value })} /></div>
+            <div>
+              <Label>Notes</Label>
+              <Textarea
+                value={form.description}
+                onChange={(e) => setForm({ ...form, description: e.target.value })}
+                rows={3}
+                placeholder="Add any notes about this contact..."
+              />
+            </div>
           </div>
           <DialogFooter>
             <Button variant="outline" onClick={() => setShowDialog(false)}>Cancel</Button>

@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Textarea } from "@/components/ui/textarea";
 import {
   Dialog,
   DialogContent,
@@ -152,7 +153,7 @@ interface FilterRule {
 
 const emptyForm = {
   name: "", industry: "", accountStatus: "", phone: "", website: "",
-  libPic: "", national: "", target: "", description: "",
+  libPic: "", national: "", target: "", description: "", note: "",
 };
 
 // ── Importable field options (for mapping) ──────────────────────────
@@ -249,7 +250,7 @@ export default function AccountsPage() {
         accountStatus: acc.accountStatus || "", phone: acc.phone || "",
         website: acc.website || "", libPic: acc.libPic || "",
         national: acc.national || "", target: acc.target || "",
-        description: acc.description || "",
+        description: acc.description || "", note: acc.note || "",
       });
       setShowDialog(true);
     }
@@ -584,6 +585,16 @@ export default function AccountsPage() {
             <div><Label>LiB PIC</Label><Input value={form.libPic} onChange={(e) => setForm({ ...form, libPic: e.target.value })} /></div>
             <div><Label>National</Label><Input value={form.national} onChange={(e) => setForm({ ...form, national: e.target.value })} /></div>
             <div><Label>Target</Label><Input value={form.target} onChange={(e) => setForm({ ...form, target: e.target.value })} /></div>
+            <div>
+              <Label>Description</Label>
+              <Textarea value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })}
+                rows={2} placeholder="Account description..." />
+            </div>
+            <div>
+              <Label>Note</Label>
+              <Textarea value={form.note} onChange={(e) => setForm({ ...form, note: e.target.value })}
+                rows={3} placeholder="Add any notes about this account..." />
+            </div>
           </div>
           <DialogFooter>
             <Button variant="outline" onClick={() => setShowDialog(false)}>Cancel</Button>
