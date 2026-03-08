@@ -672,12 +672,12 @@ export default function ContactsPage() {
                         <DetailItem label="Worth Following" value={ct.worthFollowing ? "Yes" : "No"} />
                         <DetailItem label="Created" value={formatDate(ct.createdDate as string | null)} />
                       </div>
-                      {ct.description && (
+                      {ct.description ? (
                         <div className="mt-3">
                           <span className="text-xs font-medium text-[var(--muted-foreground)]">Notes</span>
                           <p className="text-sm mt-1 whitespace-pre-wrap">{String(ct.description)}</p>
                         </div>
-                      )}
+                      ) : null}
                     </TableCell>
                   </TableRow>
                 )}
