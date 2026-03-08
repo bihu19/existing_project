@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -174,6 +175,7 @@ const emptyForm = {
 
 const IMPORTABLE_FIELDS = [
   { value: "", label: "— Skip —" },
+  { value: "accountName", label: "Account Name (maps to Account)" },
   { value: "firstName", label: "First Name" },
   { value: "lastName", label: "Last Name" },
   { value: "email", label: "Email" },
@@ -424,6 +426,21 @@ export default function ContactsPage() {
 
   const handleImport = async () => {
     setImporting(true);
+
+    // Build account name → ID lookup for rows that have accountName mapped
+    const accountNameCache: Record<string, string> = {};
+    const hasAccountNameMapping = Object.values(fieldMapping).includes("accountName");
+    if (hasAccountNameMapping) {
+      // Fetch all accounts for matching
+      const accRes = await fetch("/api/accounts?all=true&sortBy=name");
+      if (accRes.ok) {
+        const accData = await accRes.json();
+        for (const a of accData.data || []) {
+          accountNameCache[a.name.toLowerCase().trim()] = a.id;
+        }
+      }
+    }
+
     let success = 0, failed = 0;
     for (const row of csvRows) {
       const body: Record<string, string> = {};
@@ -431,6 +448,14 @@ export default function ContactsPage() {
         if (fieldKey && row[parseInt(colIdx)] !== undefined) {
           body[fieldKey] = row[parseInt(colIdx)].trim();
         }
+      }
+      // Resolve accountName → accountId
+      if (body.accountName) {
+        const matchedId = accountNameCache[body.accountName.toLowerCase().trim()];
+        if (matchedId) {
+          body.accountId = matchedId;
+        }
+        delete body.accountName;
       }
       if (!body.firstName || !body.lastName || !body.email) { failed++; continue; }
       const res = await fetch("/api/contacts", {
@@ -463,7 +488,15 @@ export default function ContactsPage() {
 
   // ── Render cell ───────────────────────────────────────────────
   const renderCell = (ct: Contact, col: ColumnDef) => {
-    if (col.key === "accountName") return (ct.account as AccountOption | null)?.name || "";
+    if (col.key === "accountName") {
+      const acc = ct.account as AccountOption | null;
+      if (!acc) return "";
+      return (
+        <Link href={`/accounts/${acc.id}`} className="text-[var(--primary)] hover:underline">
+          {acc.name}
+        </Link>
+      );
+    }
     const v = ct[col.key];
     if (v === null || v === undefined) return "";
     if (col.key === "contactStatus") {
