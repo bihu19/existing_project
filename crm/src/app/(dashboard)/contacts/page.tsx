@@ -177,7 +177,7 @@ const emptyForm = {
 
 const IMPORTABLE_FIELDS = [
   { value: "", label: "— Skip —" },
-  { value: "accountId", label: "Account ID (exact match — preferred)" },
+  { value: "accountIdCustom", label: "Account Custom ID (exact match — preferred)" },
   { value: "accountName", label: "Account Name (fuzzy match — fallback)" },
   { value: "firstName", label: "First Name" },
   { value: "lastName", label: "Last Name" },
@@ -447,15 +447,15 @@ export default function ContactsPage() {
 
     // Build account lookup caches
     const accountNameCache: Record<string, string> = {};
-    const accountIdSet = new Set<string>();
+    const accountCustomIdMap: Record<string, string> = {};
     const hasAccountNameMapping = Object.values(fieldMapping).includes("accountName");
-    const hasAccountIdMapping = Object.values(fieldMapping).includes("accountId");
-    if (hasAccountNameMapping || hasAccountIdMapping) {
+    const hasAccountCustomIdMapping = Object.values(fieldMapping).includes("accountIdCustom");
+    if (hasAccountNameMapping || hasAccountCustomIdMapping) {
       const accRes = await fetch("/api/accounts?all=true&sortBy=name");
       if (accRes.ok) {
         const accData = await accRes.json();
         for (const a of accData.data || []) {
-          accountIdSet.add(a.id);
+          if (a.accountIdCustom) accountCustomIdMap[a.accountIdCustom.trim()] = a.id;
           accountNameCache[a.name.toLowerCase().trim()] = a.id;
         }
       }
@@ -469,11 +469,13 @@ export default function ContactsPage() {
           body[fieldKey] = row[parseInt(colIdx)].trim();
         }
       }
-      // Priority 1: accountId — use directly if it exists in the accounts table
-      if (body.accountId) {
-        if (!accountIdSet.has(body.accountId)) {
-          delete body.accountId; // Invalid ID, discard
+      // Priority 1: accountIdCustom — look up account by custom ID field
+      if (body.accountIdCustom) {
+        const resolvedId = accountCustomIdMap[body.accountIdCustom.trim()];
+        if (resolvedId) {
+          body.accountId = resolvedId;
         }
+        delete body.accountIdCustom;
       }
       // Priority 2: accountName — only used as fallback when no valid accountId
       if (!body.accountId && body.accountName) {
